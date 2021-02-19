@@ -1,0 +1,10 @@
+.cross {
+  all: unset;
+  color: red;
+  cursor: pointer;
+  font-size: 1.2rem;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}

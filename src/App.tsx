@@ -1,20 +1,22 @@
-import 'src/App.css';
-import logo from 'src/logo.svg';
+import {lazy, Suspense} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import {wait} from 'src/util';
 
-export default App;
+const Counter = lazy(() => import('src/counter'));
+
+const Todos = lazy(async () => {
+  await wait(3);
+  return import('src/todos');
+});
+
+export const App = () => (
+  <>
+    <Suspense fallback="Loading Counter…">
+      <Counter />
+    </Suspense>
+
+    <Suspense fallback="Loading Todos…">
+      <Todos />
+    </Suspense>
+  </>
+);

@@ -1,13 +1,15 @@
+import {Provider} from 'hooks-for-redux';
 import {StrictMode} from 'react';
 import ReactDOM from 'react-dom';
 
-import App from 'src/App';
-import 'src/index.css';
+import {App} from 'src/App';
 import reportWebVitals from 'src/reportWebVitals';
 
 ReactDOM.render(
   <StrictMode>
-    <App />
+    <Provider>
+      <App />
+    </Provider>
   </StrictMode>,
 
   document.getElementById('root'),
